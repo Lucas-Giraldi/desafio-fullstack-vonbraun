@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { DeviceListComponent } from './features/devices/device-list.component';
+import { DeviceManagerComponent } from './features/devices/device-manager.component';
 
 export const routes: Routes = [
-  { path: '', component: DeviceListComponent }
+  { path: '', component: DeviceManagerComponent }
 ];

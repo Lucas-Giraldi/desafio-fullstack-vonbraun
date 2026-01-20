@@ -1,8 +1,21 @@
-import { BootstrapContext, bootstrapApplication } from '@angular/platform-browser';
-import { App } from './app/app';
-import { config } from './app/app.config.server';
+import 'zone.js/node';
+import { bootstrapApplication, BootstrapContext } from '@angular/platform-browser';
+import { AppComponent } from './app/app.component';
+import { provideHttpClient, withInterceptorsFromDi, withFetch } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
+import { DeviceManagerComponent } from './app/features/devices/device-manager.component';
 
-const bootstrap = (context: BootstrapContext) =>
-    bootstrapApplication(App, config, context);
-
-export default bootstrap;
+export default function bootstrap(context: BootstrapContext) {
+  return bootstrapApplication(
+    AppComponent,
+    {
+      providers: [
+        provideHttpClient(withInterceptorsFromDi(), withFetch()),
+        provideRouter([
+          { path: '', component: DeviceManagerComponent }
+        ])
+      ]
+    },
+    context
+  );
+}

@@ -1,0 +1,60 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>➕ Criar Novo Device</h2>
+
+    <div class="form-group">
+      <label>Identifier</label>
+      <input [(ngModel)]="initialData.identifier" />
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <input [(ngModel)]="initialData.description" />
+    </div>
+
+    <div class="form-group">
+      <label>Manufacturer</label>
+      <input [(ngModel)]="initialData.manufacturer" />
+    </div>
+
+    <div class="form-group">
+      <label>URL</label>
+      <input [(ngModel)]="initialData.url" />
+    </div>
+
+    <h3>Comandos</h3>
+    <div *ngFor="let cmd of initialData.commands; let i = index" class="command-group">
+      <label>Operation</label>
+      <input [(ngModel)]="cmd.operation" />
+
+      <label>Description</label>
+      <input [(ngModel)]="cmd.description" />
+
+      <label>Command Text</label>
+      <input [(ngModel)]="cmd.commandText" />
+
+      <label>Result</label>
+      <input [(ngModel)]="cmd.result" />
+
+      <label>Format</label>
+      <input [(ngModel)]="cmd.format" />
+
+      <h4>Parâmetros</h4>
+      <div *ngFor="let p of cmd.parameters; let j = index">
+        <input [(ngModel)]="cmd.parameters[j]" placeholder="Parâmetro {{j+1}}" />
+      </div>
+      <button type="button" class="action-btn" (click)="addParameter(cmd)">
+        ➕ Adicionar parâmetro
+      </button>
+    </div>
+
+    <button type="button" class="action-btn" (click)="addCommand()">
+      ➕ Adicionar Comando
+    </button>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onCancel()">Cancelar</button>
+      <button class="btn-submit" (click)="onSubmit()">Salvar</button>
+    </div>
+  </div>
+</div>

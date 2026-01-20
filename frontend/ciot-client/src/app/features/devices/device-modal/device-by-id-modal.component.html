@@ -1,0 +1,42 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>🔍 Buscar Device por ID</h2>
+
+    <div class="form-group">
+      <label>Identifier</label>
+      <input [(ngModel)]="deviceId" placeholder="Digite o ID do device" />
+    </div>
+
+    <button class="action-btn" (click)="fetchDevice()">Buscar</button>
+
+    <div *ngIf="loading" class="loading">⏳ Carregando...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <div *ngIf="device" class="device-info">
+      <h3>{{ device.identifier }}</h3>
+      <p><strong>Descrição:</strong> {{ device.description }}</p>
+      <p><strong>Fabricante:</strong> {{ device.manufacturer }}</p>
+      <p><strong>URL:</strong> {{ device.url }}</p>
+
+      <h4>Comandos</h4>
+      <div *ngFor="let cmd of device.commands" class="command-group">
+        <p><strong>Operation:</strong> {{ cmd.operation }}</p>
+        <p><strong>Description:</strong> {{ cmd.description }}</p>
+        <p><strong>Command Text:</strong> {{ cmd.commandText }}</p>
+        <p><strong>Result:</strong> {{ cmd.result }}</p>
+        <p><strong>Format:</strong> {{ cmd.format }}</p>
+
+        <div *ngIf="cmd.parameters.length">
+          <p><strong>Parâmetros:</strong></p>
+          <ul>
+            <li *ngFor="let p of cmd.parameters">{{ p }}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-cancel" (click)="onClose()">Fechar</button>
+    </div>
+  </div>
+</div>

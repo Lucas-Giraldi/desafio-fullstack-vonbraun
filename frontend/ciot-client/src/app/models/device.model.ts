@@ -1,12 +1,10 @@
 export interface Command {
   operation: string;
   description: string;
-  command: {
-    commandText: string;
-    parameters: any[];
-  };
+  commandText: string;
   result: string;
   format: string;
+  parameters: string[];
 }
 
 export interface Device {

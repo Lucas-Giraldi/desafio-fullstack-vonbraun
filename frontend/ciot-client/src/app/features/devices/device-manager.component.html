@@ -1,0 +1,68 @@
+<div class="menu">
+  <button class="menu-btn" (click)="getAllDevices()">🔄 Get All</button>
+  <button class="menu-btn" (click)="openGetByIdModal()">🔍 Get By Id</button>
+  <button class="menu-btn" (click)="openCreateModal()">➕ Create</button>
+</div>
+
+<h2 class="title">📋 Lista de Dispositivos</h2>
+
+<div *ngIf="loading" class="loading">⏳ Carregando dispositivos...</div>
+<div *ngIf="error" class="error">❌ {{ error }}</div>
+
+<div *ngIf="!loading && !error && devices.length > 0" class="device-list">
+  <div *ngFor="let device of devices" class="device-card">
+    <div class="device-header">
+      <h3>{{ device.identifier }}</h3>
+
+      <select [(ngModel)]="selectedCommands[device.identifier]" class="command-select">
+        <option *ngFor="let cmd of device.commands" [value]="cmd.operation">
+          {{ cmd.operation }}
+        </option>
+      </select>
+
+      <input
+        *ngIf="hasParameters(device.identifier)"
+        [(ngModel)]="commandParameters[device.identifier]"
+        placeholder="Parâmetro"
+        class="param-input"
+      />
+
+      <button class="execute-btn" (click)="executeDevice(device.identifier)">⚡ Execute</button>
+
+      <div *ngIf="executionResults[device.identifier]" 
+           [ngClass]="{'execution-success': executionResults[device.identifier].status === 'success',
+                       'execution-error': executionResults[device.identifier].status === 'error'}"
+           class="execution-result">
+        <strong>
+          <span *ngIf="executionResults[device.identifier].status === 'success'">🟢</span>
+          <span *ngIf="executionResults[device.identifier].status === 'error'">🔴</span>
+          Resultado:
+        </strong>
+        {{ executionResults[device.identifier].message }}
+      </div>
+    </div>
+
+    <div class="device-info">
+      <p><strong>Descrição:</strong> {{ device.description }}</p>
+      <p><strong>Fabricante:</strong> {{ device.manufacturer }}</p>
+      <p><strong>URL:</strong> {{ device.url }}</p>
+    </div>
+
+    <div class="json-block">
+      <pre><code [innerHTML]="formatJson(device)"></code></pre>
+    </div>
+  </div>
+</div>
+
+<app-device-modal
+  *ngIf="showModal"
+  [initialData]="newDevice"
+  (submit)="handleCreate($event)"
+  (cancel)="showModal = false">
+</app-device-modal>
+
+<app-device-by-id-modal
+  *ngIf="showGetByIdModal"
+  (close)="showGetByIdModal = false"
+  (deviceFound)="handleDeviceById($event)">
+</app-device-by-id-modal>
