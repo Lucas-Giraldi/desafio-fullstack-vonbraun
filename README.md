@@ -1,66 +1,63 @@
-## Desafio Técnico – Desenvolvedor Full Stack Sênior
+# Desafio Técnico – Desenvolvedor Full Stack Sênior
 
-Centro de Pesquisas Avançadas Wernher von Braun
+**Centro de Pesquisas Avançadas Wernher von Braun**
 
-Visão Geral
+---
+
+## Visão Geral
 
 Solução para o desafio técnico que simula um ecossistema IoT, integrando dispositivos físicos a uma plataforma digital utilizando:
 
-Backend: C# (.NET)
+- **Backend:** C# (.NET)  
+- **Simulador IoT:** Python  
+- **Frontend:** Angular  
 
-Simulador IoT: Python
+**Foco principal:** Arquitetura, integração entre componentes e organização do código.
 
-Frontend: Angular
+---
 
-O foco está em arquitetura, integração entre componentes e organização do código.
+## Arquitetura
 
-Arquitetura
+- O simulador IoT (Python) roda em container Docker  
+- Eventos são enviados ao backend via API REST  
+- O backend processa e persiste os dados  
+- O frontend consome a API para visualização  
 
-O simulador IoT (Python) roda em container Docker
+---
 
-Eventos são enviados ao backend via API REST
+## Tecnologias Utilizadas
 
-O backend processa e persiste os dados
+- .NET 8 / ASP.NET Core  
+- Python 3 (Docker / Docker Compose)  
+- Angular  
+- HTTP / REST  
 
-O frontend consome a API para visualização
+---
 
-Tecnologias
+## Execução
 
-.NET 8 / ASP.NET Core
-
-Python 3 (Docker / Docker Compose)
-
-Angular
-
-HTTP / REST
-
-Execução
-
-Simulador IoT (Python)
-
+### Simulador IoT (Python)
+```bash
 docker-compose up -d
-
-
-Backend (.NET)
-
+```
+### Backend (.NET)
+ ```bash
 dotnet restore
 dotnet run
+```
 
+### Frontend (Angular)
 
-Frontend (Angular)
-
+```bash
 npm install
 ng serve
+```
+---
 
-Observações Importantes
+### Observações Importantes
 
-O simulador IoT utiliza um dispositivo fixo (mock-device-1) definido no código Python
+- O simulador IoT utiliza um dispositivo fixo: mock-device-1 definido no código Python
 
-Embora o backend permita cadastro de múltiplos dispositivos, a execução do simulador funciona apenas com o mock-device-1
+- Embora o backend permita cadastro de múltiplos dispositivos, a execução do simulador funciona apenas com o mock-device-1
 
-As requests de comando do mock-device-1 foram exportadas do Postman e versionadas no repositório para facilitar os testes
-
-Autor
-
-Lucas Giraldi
-Desenvolvedor Full Stack Sênior
+- As requests de comando do mock-device-1 foram exportadas do Postman e versionadas no repositório para facilitar os testes
