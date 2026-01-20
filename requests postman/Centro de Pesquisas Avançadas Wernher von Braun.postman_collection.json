@@ -1,0 +1,115 @@
+{
+  "info": {
+    "_postman_id": "f2c759f7-c2c8-44b2-a966-97bb0b8e0a45",
+    "name": "Centro de Pesquisas Avançadas Wernher von Braun",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21156269"
+  },
+  "item": [
+    {
+      "name": "Execute device",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"device_id\": \"mock-device-1\",\r\n  \"command\": \"PING\",\r\n  \"parameters\": []\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/device/execute",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "device",
+            "execute"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get device",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/device",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "device"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get device id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/api/device/mock-device-1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "device",
+            "mock-device-1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create device",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"identifier\": \"mock-device-1\",\r\n  \"description\": \"Mock device for tests\",\r\n  \"manufacturer\": \"CIoT\",\r\n  \"url\": \"mock-device:9000\",\r\n  \"commands\": [\r\n    {\r\n      \"operation\": \"PING\",\r\n      \"description\": \"Ping device\",\r\n      \"commandText\": \"PING\",\r\n      \"result\": \"ACK:PING\",\r\n      \"format\": \"text\"\r\n    },\r\n    {\r\n      \"operation\": \"SET\",\r\n      \"description\": \"Turn device on\",\r\n      \"commandText\": \"SET\",\r\n      \"result\": \"ACK:SET\",\r\n      \"format\": \"text\"\r\n    }\r\n  ]\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:5000/api/device",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "5000",
+          "path": [
+            "api",
+            "device"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
