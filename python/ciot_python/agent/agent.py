@@ -5,10 +5,6 @@ from typing import List
 
 app = FastAPI()
 
-# =========================================================
-# MODELOS (contrato HTTP)
-# =========================================================
-
 class ParameterValue(BaseModel):
     name: str
     value: str
@@ -22,21 +18,13 @@ class ExecuteCommandResponse(BaseModel):
     device_response: str
 
 
-# =========================================================
-# REGISTRO DE DEVICES (mock / futuro banco ou discovery)
-# =========================================================
 
 DEVICE_REGISTRY = {
     "mock-device-1": {
-        "host": "mock-device",  # nome do serviço no docker-compose
+        "host": "mock-device", 
         "port": 9000
     }
 }
-
-
-# =========================================================
-# TCP CLIENT
-# =========================================================
 
 async def send_tcp_command(
     device_id: str,
@@ -71,10 +59,6 @@ async def send_tcp_command(
 
     return result
 
-
-# =========================================================
-# ENDPOINT HTTP
-# =========================================================
 
 @app.post("/execute", response_model=ExecuteCommandResponse)
 async def execute(request: ExecuteCommandRequest):
